@@ -60,8 +60,26 @@ const onTurnErrorHandler = async (context, error) => {
 // Set the onTurnError for the singleton CloudAdapter.
 adapter.onTurnError = onTurnErrorHandler;
 
+// Map configuration values values from .env file for each service
+const QnAConfiguration = {
+    knowledgeBaseId: process.env.QnAKnowledgebaseId,
+    endpointKey: process.env.QnAAuthKey,
+    host: process.env.QnAEndpointHostName
+};
+const LuisConfiguration = {
+    applicationId: process.env.LuisAppId,
+    endpointKey: process.env.LuisAPIKey,
+    endpoint: process.env.LuisAPIHostName
+};
+
+// Pass into configuration object
+const configuration = {
+    QnAConfiguration,
+    LuisConfiguration
+}
+
 // Create the main dialog.
-const myBot = new EchoBot();
+const myBot = new EchoBot(configuration);
 
 // Listen for incoming requests.
 server.post('/api/messages', async (req, res) => {

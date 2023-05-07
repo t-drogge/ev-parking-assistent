@@ -15,7 +15,9 @@
         "url": "https://github.com"
     },
     "dependencies": {
+        "@azure/ai-text-analytics": "^5.1.0",
         "botbuilder": "^4.19.3",
+        "botbuilder-ai": "^4.19.3",
         "dotenv": "^8.2.0",
         "restify": "^11.1.0"
     },
